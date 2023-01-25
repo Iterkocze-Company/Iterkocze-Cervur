@@ -16,9 +16,12 @@ int main(int argc, char *argv[]) {
 	// initiate HTTP_Server
 	HTTP_Server http_server;
 	int port = 8000;
-	if( argc != 2 ) {
-		printf("You have to provide the directory to host\n");
-		exit(-1);
+	if( argc == 2 ) {
+		port = atoi(argv[1]);
+		if (port == 0) {
+			printf("Port %s isn't valid\n", argv[1]);
+			exit(-1);
+		}
 	}
 	init_server(&http_server, port);
 
